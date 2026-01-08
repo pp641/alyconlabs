@@ -73,9 +73,6 @@ export default function AlyconLabsLanding() {
               Build With Us
               <ArrowRight size={18} />
             </button>
-            <button className={`px-6 sm:px-8 py-3 sm:py-4 border rounded-full font-semibold text-sm sm:text-base transition ${isDark ? 'border-white/30 hover:border-white/60 hover:bg-white/5' : 'border-black/30 hover:border-black/60 hover:bg-black/5'}`}>
-              Watch Demo
-            </button>
           </div>
         </div>
       </section>
