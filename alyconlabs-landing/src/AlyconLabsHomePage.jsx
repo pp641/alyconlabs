@@ -670,14 +670,14 @@ export default function AlcyonLabsLanding() {
             <ArrowRight size={20} />
           </button>
           <a
-            href="mailto:admin@Alcyonlabs.com"
+            href="mailto:admin@alcyonlabs.com"
             className={`px-6 sm:px-10 py-3 sm:py-4 border rounded-full font-semibold transition transform hover:scale-105 text-sm sm:text-base inline-flex items-center justify-center ${
               isDark
                 ? "border-white/30 hover:border-white/60"
                 : "border-black/30 hover:border-black/60"
             }`}
           >
-            Mail us at admin@Alcyonlabs.com
+            Mail us at admin@alcyonlabs.com
           </a>
         </div>
       </section>
