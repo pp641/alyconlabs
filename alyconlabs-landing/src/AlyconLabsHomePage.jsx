@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Code2, Shield, Cpu, Database, Cloud, Layout, Server, Sun, Moon, CheckCircle2 } from 'lucide-react';
+import { FaArrowRight, FaCode,  FaDatabase, FaCloud, FaServer, FaSun, FaMoon, FaCheckCircle, FaTwitter, FaInstagram, FaFacebook, FaTelegram, FaLinkedin } from 'react-icons/fa';
 import vista_logo from "./assets/Vista_Logos/logo-svg-white.svg"
 import vista_logo_black from "./assets/Vista_Logos/black-svg.svg"
 
@@ -14,6 +15,53 @@ export default function AlyconLabsLanding() {
         isDark ? "bg-black text-white" : "bg-white text-black"
       } transition-colors duration-300 min-h-screen w-full`}
     >
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-10px); }
+        }
+        @keyframes slideInLeft {
+          from { opacity: 0; transform: translateX(-50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+          from { opacity: 0; transform: translateX(50px); }
+          to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0.7; }
+        }
+        @keyframes border-glow {
+          0%, 100% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.1); }
+          50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); }
+        }
+        .shimmer {
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+          background-size: 1000px 100%;
+          animation: shimmer 3s infinite;
+        }
+        .float {
+          animation: float 3s ease-in-out infinite;
+        }
+        .slide-in-left {
+          animation: slideInLeft 0.8s ease-out;
+        }
+        .slide-in-right {
+          animation: slideInRight 0.8s ease-out;
+        }
+        .pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+        .border-glow {
+          animation: border-glow 2s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* Navigation */}
       <nav
         className={`fixed w-full top-0 z-50 ${
@@ -21,29 +69,20 @@ export default function AlyconLabsLanding() {
         } backdrop-blur-sm border-b transition-colors duration-300`}
       >
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div className={`text-xl sm:text-2xl font-light tracking-tight flex items-center gap-2`}>
+          <div className={`text-xl sm:text-2xl font-light tracking-tight flex items-center gap-2 slide-in-left`}>
           <img src={ !isDark ?  vista_logo : vista_logo_black} alt="Vista Logo" className="h-10 w-auto bg-white" />
             Alycon<span className="font-bold">Labs</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <button
               onClick={() => setIsDark(!isDark)}
-              className={`p-2 rounded-full transition ${
+              className={`p-2 rounded-full transition transform hover:scale-110 ${
                 isDark
                   ? "bg-white/10 hover:bg-white/20"
                   : "bg-black/10 hover:bg-black/20"
               }`}
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
-            </button>
-            <button
-              className={`px-4 sm:px-6 py-2 rounded-full font-medium text-xs sm:text-sm transition ${
-                isDark
-                  ? "bg-white text-black hover:bg-gray-200"
-                  : "bg-black text-white hover:bg-gray-800"
-              }`}
-            >
-              Get Started
+              {isDark ? <FaSun size={20} className="animate-spin" style={{animationDuration: '3s'}} /> : <FaMoon size={20} />}
             </button>
           </div>
         </div>
@@ -53,9 +92,14 @@ export default function AlyconLabsLanding() {
       <section
         className={`w-full min-h-screen flex items-center justify-center pt-24 px-4 sm:px-6 relative overflow-hidden`}
       >
+        <div className="absolute inset-0 overflow-hidden">
+          <div className={`absolute top-20 left-10 w-40 h-40 ${isDark ? 'bg-blue-500' : 'bg-blue-400'} rounded-full float opacity-20 blur-3xl`}></div>
+          <div className={`absolute bottom-20 right-10 w-60 h-60 ${isDark ? 'bg-purple-500' : 'bg-purple-400'} rounded-full float opacity-20 blur-3xl`} style={{animationDelay: '1s'}}></div>
+        </div>
+
         <div className="w-full max-w-5xl mx-auto text-center relative z-10">
           <div
-            className={`inline-block mb-6 px-4 py-2 rounded-full ${
+            className={`inline-block mb-6 px-4 py-2 rounded-full slide-in-left ${
               isDark
                 ? "bg-white/5 border border-white/20"
                 : "bg-black/5 border border-black/20"
@@ -67,7 +111,7 @@ export default function AlyconLabsLanding() {
           </div>
 
           <h1
-            className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight tracking-tight`}
+            className={`text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight tracking-tight slide-in-right`}
           >
             Build Your
             <br />
@@ -76,14 +120,14 @@ export default function AlyconLabsLanding() {
 
           {/* MVP Highlight Section */}
           <div
-            className={`my-12 p-8 rounded-2xl border ${
+            className={`my-12 p-8 rounded-2xl border border-glow ${
               isDark
                 ? "bg-white/5 border-white/20"
                 : "bg-black/5 border-black/20"
             } transition-colors duration-300`}
           >
             <div
-              className={`inline-block mb-4 px-4 py-2 rounded-full text-sm ${
+              className={`inline-block mb-4 px-4 py-2 rounded-full text-sm pulse-glow ${
                 isDark
                   ? "bg-blue-500/20 text-blue-300"
                   : "bg-blue-400/30 text-blue-700"
@@ -106,14 +150,15 @@ export default function AlyconLabsLanding() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center text-sm">
               {["Product Strategy", "Full-Stack Dev", "Launch Support"].map(
-                (item) => (
+                (item, idx) => (
                   <div
                     key={item}
-                    className={`flex items-center gap-2 px-3 py-1 rounded-full ${
+                    className={`flex items-center gap-2 px-3 py-1 rounded-full transform transition hover:scale-110 ${
                       isDark ? "bg-white/10" : "bg-black/10"
                     }`}
+                    style={{animationDelay: `${idx * 0.1}s`}}
                   >
-                    <CheckCircle2 size={16} />
+                    <CheckCircle2 size={16} className="animate-pulse" />
                     <span>{item}</span>
                   </div>
                 )
@@ -122,7 +167,7 @@ export default function AlyconLabsLanding() {
           </div>
 
           <p
-            className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed ${
+            className={`text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-8 sm:mb-12 font-light leading-relaxed slide-in-left ${
               isDark ? "text-gray-400" : "text-gray-600"
             }`}
           >
@@ -131,16 +176,16 @@ export default function AlyconLabsLanding() {
             precision.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center slide-in-right">
             <button
-              className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 text-sm sm:text-base transition ${
+              className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 text-sm sm:text-base transition transform hover:scale-105 ${
                 isDark
                   ? "bg-white text-black hover:bg-gray-200"
                   : "bg-black text-white hover:bg-gray-800"
               }`}
             >
               Build With Us
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
             </button>
           </div>
         </div>
@@ -150,7 +195,7 @@ export default function AlyconLabsLanding() {
       <section
         className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 slide-in-left">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light mb-6`}>
             Our <span className="font-bold">Expertise</span>
           </h2>
@@ -164,11 +209,11 @@ export default function AlyconLabsLanding() {
         </div>
 
         <div className="flex justify-center gap-2 sm:gap-4 mb-12 flex-wrap">
-          {["frontend", "backend", "devops", "database"].map((tab) => (
+          {["frontend", "backend", "devops", "database"].map((tab, idx) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition text-sm sm:text-base ${
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition text-sm sm:text-base transform hover:scale-105 ${
                 activeTab === tab
                   ? isDark
                     ? "bg-white text-black"
@@ -177,6 +222,7 @@ export default function AlyconLabsLanding() {
                   ? "border border-white/20 text-gray-400 hover:border-white/40"
                   : "border border-black/20 text-gray-600 hover:border-black/40"
               }`}
+              style={{animationDelay: `${idx * 0.1}s`}}
             >
               {tab === "frontend" && "Frontend"}
               {tab === "backend" && "Backend"}
@@ -189,7 +235,7 @@ export default function AlyconLabsLanding() {
         <div className="grid md:grid-cols-2 gap-12 items-start md:items-center">
           <div>
             {activeTab === "frontend" && (
-              <div className="space-y-6">
+              <div className="space-y-6 slide-in-left">
                 <h3 className={`text-2xl sm:text-3xl font-light`}>
                   Modern Frontend Development
                 </h3>
@@ -210,12 +256,13 @@ export default function AlyconLabsLanding() {
                     "Performance Optimization",
                     "Accessibility",
                     "Animations",
-                  ].map((item) => (
+                  ].map((item, idx) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm sm:text-base"
+                      className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
+                      style={{animationDelay: `${idx * 0.05}s`}}
                     >
-                      <CheckCircle2 size={20} />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -224,7 +271,7 @@ export default function AlyconLabsLanding() {
             )}
 
             {activeTab === "backend" && (
-              <div className="space-y-6">
+              <div className="space-y-6 slide-in-left">
                 <h3 className={`text-2xl sm:text-3xl font-light`}>
                   Robust Backend Systems
                 </h3>
@@ -244,12 +291,12 @@ export default function AlyconLabsLanding() {
                     "Real-time Communication",
                     "Authentication",
                     "Integrations",
-                  ].map((item) => (
+                  ].map((item, idx) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm sm:text-base"
+                      className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
                     >
-                      <CheckCircle2 size={20} />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -258,7 +305,7 @@ export default function AlyconLabsLanding() {
             )}
 
             {activeTab === "devops" && (
-              <div className="space-y-6">
+              <div className="space-y-6 slide-in-left">
                 <h3 className={`text-2xl sm:text-3xl font-light`}>
                   Cloud & DevOps
                 </h3>
@@ -281,9 +328,9 @@ export default function AlyconLabsLanding() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm sm:text-base"
+                      className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
                     >
-                      <CheckCircle2 size={20} />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -292,7 +339,7 @@ export default function AlyconLabsLanding() {
             )}
 
             {activeTab === "database" && (
-              <div className="space-y-6">
+              <div className="space-y-6 slide-in-left">
                 <h3 className={`text-2xl sm:text-3xl font-light`}>
                   Database Architecture
                 </h3>
@@ -315,9 +362,9 @@ export default function AlyconLabsLanding() {
                   ].map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-3 text-sm sm:text-base"
+                      className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
                     >
-                      <CheckCircle2 size={20} />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -327,7 +374,7 @@ export default function AlyconLabsLanding() {
           </div>
 
           <div
-            className={`relative h-64 sm:h-80 md:h-96 w-full rounded-2xl border flex items-center justify-center ${
+            className={`relative h-64 sm:h-80 md:h-96 w-full rounded-2xl border flex items-center justify-center border-glow slide-in-right ${
               isDark
                 ? "bg-white/5 border-white/10"
                 : "bg-black/5 border-black/10"
@@ -335,19 +382,19 @@ export default function AlyconLabsLanding() {
           >
             <div className="text-center px-4">
               <div
-                className={`inline-block p-4 rounded-full mb-4 ${
+                className={`inline-block p-4 rounded-full mb-4 pulse-glow ${
                   isDark
                     ? "bg-white/5 border border-white/10"
                     : "bg-black/5 border border-black/10"
                 }`}
               >
-                {activeTab === "frontend" && <Layout size={40} />}
-                {activeTab === "backend" && <Server size={40} />}
-                {activeTab === "devops" && <Cloud size={40} />}
-                {activeTab === "database" && <Database size={40} />}
+                {activeTab === "frontend" && <Layout size={40} className="animate-bounce" />}
+                {activeTab === "backend" && <Server size={40} className="animate-bounce" />}
+                {activeTab === "devops" && <Cloud size={40} className="animate-bounce" />}
+                {activeTab === "database" && <Database size={40} className="animate-bounce" />}
               </div>
               <p
-                className={`font-light text-sm ${
+                className={`font-light text-sm animate-pulse ${
                   isDark ? "text-gray-400" : "text-gray-600"
                 }`}
               >
@@ -365,14 +412,14 @@ export default function AlyconLabsLanding() {
       <section
         className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
       >
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-12 sm:mb-16 slide-in-left">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light mb-6`}>
             About <span className="font-bold">Alycon Labs</span>
           </h2>
         </div>
 
         <div
-          className={`mb-12 p-6 sm:p-8 rounded-lg ${
+          className={`mb-12 p-6 sm:p-8 rounded-lg border-glow ${
             isDark
               ? "bg-white/5 border border-white/10"
               : "bg-black/5 border border-black/10"
@@ -393,7 +440,7 @@ export default function AlyconLabsLanding() {
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* What We Do */}
-          <div>
+          <div className="slide-in-left">
             <h3 className={`text-2xl sm:text-3xl font-semibold mb-6`}>
               What We Do
             </h3>
@@ -405,8 +452,8 @@ export default function AlyconLabsLanding() {
                 "Market validation through user feedback loops",
                 "Launch strategy and post-launch iteration support",
               ].map((item, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle2 size={20} className="flex-shrink-0 mt-1" />
+                <li key={idx} className="flex items-start gap-3 transform transition hover:translate-x-2">
+                  <CheckCircle2 size={20} className="flex-shrink-0 mt-1 animate-pulse" />
                   <span
                     className={`text-base ${
                       isDark ? "text-gray-300" : "text-gray-700"
@@ -420,7 +467,7 @@ export default function AlyconLabsLanding() {
           </div>
 
           {/* Why Startups Choose Us */}
-          <div>
+          <div className="slide-in-right">
             <h3 className={`text-2xl sm:text-3xl font-semibold mb-6`}>
               Why Startups Choose Us
             </h3>
@@ -447,7 +494,7 @@ export default function AlyconLabsLanding() {
             : "bg-black/5 border-y border-black/10"
         } my-12 sm:my-16`}
       >
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center slide-in-left">
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-light mb-6`}>
             Our <span className="font-bold">Philosophy</span>
           </h2>
@@ -456,16 +503,16 @@ export default function AlyconLabsLanding() {
               isDark ? "text-gray-300" : "text-gray-700"
             }`}
           >
-            <span className="font-semibold">Start small.</span>{" "}
-            <span className="font-semibold">Learn fast.</span>{" "}
-            <span className="font-semibold">Scale smart.</span>
+            <span className="font-semibold animate-pulse">Start small.</span>{" "}
+            <span className="font-semibold animate-pulse" style={{animationDelay: '0.3s'}}>Learn fast.</span>{" "}
+            <span className="font-semibold animate-pulse" style={{animationDelay: '0.6s'}}>Scale smart.</span>
           </p>
         </div>
       </section>
       <section
         className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 slide-in-left">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light`}>
             Why <span className="font-bold">Alycon</span>Labs
           </h2>
@@ -506,13 +553,13 @@ export default function AlyconLabsLanding() {
           ].map((feature, idx) => (
             <div
               key={idx}
-              className={`p-6 rounded-lg border transition ${
+              className={`p-6 rounded-lg border transition transform hover:scale-105 border-glow ${
                 isDark
                   ? "bg-white/5 border-white/10 hover:border-white/20"
                   : "bg-black/5 border-black/10 hover:border-black/20"
               }`}
             >
-              <feature.icon size={28} className="mb-4" />
+              <feature.icon size={28} className="mb-4 animate-bounce" />
               <h3 className={`text-lg font-semibold mb-2`}>{feature.title}</h3>
               <p
                 className={`text-sm font-light ${
@@ -526,28 +573,11 @@ export default function AlyconLabsLanding() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      {/* <section className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}>
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {[
-            { number: '150+', label: 'Projects' },
-            { number: '98%', label: 'Satisfaction' },
-            { number: '50M+', label: 'Users Served' },
-            { number: '24/7', label: 'Support' },
-          ].map((stat, idx) => (
-            <div key={idx} className={`text-center p-6 rounded-lg border ${isDark ? 'border-white/10 hover:border-white/20' : 'border-black/10 hover:border-black/20'} transition`}>
-              <div className={`text-4xl sm:text-5xl font-light mb-2`}>{stat.number}</div>
-              <div className={`text-sm font-light ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section> */}
-
       {/* Process Section */}
       <section
         className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
       >
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 slide-in-left">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light`}>
             Our <span className="font-bold">Process</span>
           </h2>
@@ -585,9 +615,9 @@ export default function AlyconLabsLanding() {
               description: "Monitoring, optimization, and ongoing partnership.",
             },
           ].map((item) => (
-            <div key={item.step} className="flex gap-6 items-start">
+            <div key={item.step} className="flex gap-6 items-start transform transition hover:translate-x-2">
               <div
-                className={`text-4xl font-light min-w-fit ${
+                className={`text-4xl font-light min-w-fit animate-pulse ${
                   isDark ? "text-white/30" : "text-black/30"
                 }`}
               >
@@ -612,178 +642,25 @@ export default function AlyconLabsLanding() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      {/* <section className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}>
-        <div className="text-center mb-16">
-          <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light mb-6`}>
-            Our <span className="font-bold">Projects</span>
-          </h2>
-          <p className={`text-base sm:text-lg font-light max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-            From concept to market-leading products
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {[
-            {
-              title: 'FinFlow',
-              description: 'Real-time financial analytics platform for SMEs',
-              category: 'FinTech',
-              status: 'Live'
-            },
-            {
-              title: 'HealthSync',
-              description: 'Patient management system for telemedicine',
-              category: 'HealthTech',
-              status: 'Live'
-            },
-            {
-              title: 'MarketPro',
-              description: 'AI-powered inventory management system',
-              category: 'E-commerce',
-              status: 'Live'
-            },
-            {
-              title: 'TaskFlow',
-              description: 'Collaborative project management tool',
-              category: 'Productivity',
-              status: 'Live'
-            },
-            {
-              title: 'LearnHub',
-              description: 'EdTech platform with interactive courses',
-              category: 'Education',
-              status: 'Live'
-            },
-            {
-              title: 'TravelGo',
-              description: 'Travel booking and itinerary planning app',
-              category: 'Travel',
-              status: 'Live'
-            },
-          ].map((project, idx) => (
-            <div
-              key={idx}
-              className={`p-6 rounded-lg border transition ${isDark ? 'bg-white/5 border-white/10 hover:border-white/20' : 'bg-black/5 border-black/10 hover:border-black/20'}`}
-            >
-              <div className="mb-3">
-                <span className={`text-xs font-semibold px-3 py-1 rounded-full ${isDark ? 'bg-blue-500/20 text-blue-300' : 'bg-blue-400/30 text-blue-700'}`}>
-                  {project.category}
-                </span>
-              </div>
-              <h3 className={`text-xl font-semibold mb-2`}>{project.title}</h3>
-              <p className={`text-sm mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>{project.description}</p>
-              <div className={`text-xs font-light px-2 py-1 rounded inline-block ${isDark ? 'bg-green-500/20 text-green-300' : 'bg-green-400/20 text-green-700'}`}>
-                {project.status}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section> */}
-
-      {/* Testimonials Section */}
-      {/* <section className={`w-full ${isDark ? 'bg-white/5 border-y border-white/10' : 'bg-black/5 border-y border-black/10'} py-16 sm:py-24`}>
-        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light mb-6`}>
-              What Our <span className="font-bold">Clients Say</span>
-            </h2>
-            <p className={`text-base sm:text-lg font-light max-w-2xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-              Hear from founders and entrepreneurs we've helped launch
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {[
-              {
-                name: 'Sarah Chen',
-                company: 'FinFlow',
-                role: 'Founder & CEO',
-                text: 'Alycon Labs helped us build our MVP in 6 weeks. Their focus on core features and rapid iteration was exactly what we needed to validate our market.',
-                avatar: '👩‍💼'
-              },
-              {
-                name: 'Marcus Johnson',
-                company: 'HealthSync',
-                role: 'Co-Founder',
-                text: 'The team understood our vision immediately. They delivered a production-ready product that impressed our early adopters and investors alike.',
-                avatar: '👨‍💼'
-              },
-              {
-                name: 'Priya Sharma',
-                company: 'MarketPro',
-                role: 'Founder',
-                text: 'Professional, responsive, and genuinely invested in our success. The entire process was transparent and collaborative from start to finish.',
-                avatar: '👩‍💼'
-              },
-              {
-                name: 'David Park',
-                company: 'TaskFlow',
-                role: 'CEO',
-                text: 'Beyond development, they provided strategic guidance on product roadmap and market positioning. Invaluable partners in our journey.',
-                avatar: '👨‍💼'
-              },
-              {
-                name: 'Emma Wilson',
-                company: 'LearnHub',
-                role: 'Founder',
-                text: 'Their MVP approach saved us 3 months of development time and helped us test assumptions before full-scale investment. Highly recommended.',
-                avatar: '👩‍💼'
-              },
-              {
-                name: 'Rahul Verma',
-                company: 'TravelGo',
-                role: 'Co-Founder',
-                text: 'Working with Alycon Labs felt like having an experienced technical co-founder. They made complex architecture decisions simple and scalable.',
-                avatar: '👨‍💼'
-              },
-            ].map((testimonial, idx) => (
-              <div
-                key={idx}
-                className={`p-6 rounded-lg border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white border-black/10'}`}
-              >
-                <div className="flex items-start gap-1 mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-yellow-400">★</span>
-                  ))}
-                </div>
-                <p className={`text-sm leading-relaxed mb-4 ${isDark ? 'text-gray-300' : 'text-gray-700'}`}>
-                  "{testimonial.text}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="text-2xl">{testimonial.avatar}</div>
-                  <div>
-                    <h4 className={`text-sm font-semibold`}>{testimonial.name}</h4>
-                    <p className={`text-xs ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
-                      {testimonial.role} at {testimonial.company}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       <section
         className={`w-full max-w-4xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center`}
       >
         <h2
-          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6`}
+          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light mb-6 slide-in-left`}
         >
           Ready to Build?
         </h2>
         <p
-          className={`text-base sm:text-lg font-light mb-12 max-w-2xl mx-auto ${
+          className={`text-base sm:text-lg font-light mb-12 max-w-2xl mx-auto slide-in-right ${
             isDark ? "text-gray-400" : "text-gray-600"
           }`}
         >
           Let's create something amazing together
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center slide-in-left">
           <button
-            className={`px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition text-sm sm:text-base ${
+            className={`px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition transform hover:scale-105 ${
               isDark
                 ? "bg-white text-black hover:bg-gray-200"
                 : "bg-black text-white hover:bg-gray-800"
@@ -794,7 +671,7 @@ export default function AlyconLabsLanding() {
           </button>
           <a
             href="mailto:admin@alyconlabs.com"
-            className={`px-6 sm:px-10 py-3 sm:py-4 border rounded-full font-semibold transition text-sm sm:text-base inline-flex items-center justify-center ${
+            className={`px-6 sm:px-10 py-3 sm:py-4 border rounded-full font-semibold transition transform hover:scale-105 text-sm sm:text-base inline-flex items-center justify-center ${
               isDark
                 ? "border-white/30 hover:border-white/60"
                 : "border-black/30 hover:border-black/60"
@@ -805,44 +682,139 @@ export default function AlyconLabsLanding() {
         </div>
       </section>
 
+      {/* Connect With Us Section */}
+      <section
+        className={`w-full max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center slide-in-left`}
+      >
+        <div className={`p-8 sm:p-12 rounded-2xl border-glow ${
+          isDark
+            ? "bg-white/5 border border-white/10"
+            : "bg-black/5 border border-black/10"
+        }`}>
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl font-light mb-4`}>
+            Connect <span className="font-bold">With Us</span>
+          </h2>
+          <p className={`text-base sm:text-lg font-light mb-10 max-w-2xl mx-auto ${
+            isDark ? "text-gray-400" : "text-gray-600"
+          }`}>
+            Follow our journey, stay updated, and connect with our growing community on social media
+          </p>
+
+          {/* Social Media Grid */}
+          <div className="grid sm:grid-cols-2 md:grid-cols-5 gap-4 max-w-3xl mx-auto">
+            <a
+              href="https://twitter.com/alcyonlabs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-6 rounded-lg border transition transform hover:scale-110 border-glow group ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:border-blue-500/50 hover:bg-blue-500/10"
+                  : "bg-black/5 border-black/10 hover:border-blue-400/50 hover:bg-blue-400/10"
+              }`}
+            >
+              <FaTwitter size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-500"
+              }`} />
+              <p className="text-sm font-semibold">Twitter</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>@alcyonlabs</p>
+            </a>
+
+            <a
+              href="https://instagram.com/alcyonlabs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-6 rounded-lg border transition transform hover:scale-110 border-glow group ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:border-pink-500/50 hover:bg-pink-500/10"
+                  : "bg-black/5 border-black/10 hover:border-pink-400/50 hover:bg-pink-400/10"
+              }`}
+            >
+              <FaInstagram size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-pink-400" : "text-gray-600 group-hover:text-pink-500"
+              }`} />
+              <p className="text-sm font-semibold">Instagram</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>@alcyonlabs</p>
+            </a>
+
+            <a
+              href="https://www.facebook.com/profile.php?id=61586095569613"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-6 rounded-lg border transition transform hover:scale-110 border-glow group ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:border-blue-600/50 hover:bg-blue-600/10"
+                  : "bg-black/5 border-black/10 hover:border-blue-500/50 hover:bg-blue-500/10"
+              }`}
+            >
+              <FaFacebook size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-600"
+              }`} />
+              <p className="text-sm font-semibold">Facebook</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alycon Labs</p>
+            </a>
+
+            <a
+              href="https://t.me/alcyonlabs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-6 rounded-lg border transition transform hover:scale-110 border-glow group ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:border-cyan-500/50 hover:bg-cyan-500/10"
+                  : "bg-black/5 border-black/10 hover:border-cyan-400/50 hover:bg-cyan-400/10"
+              }`}
+            >
+              <FaTelegram size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-cyan-400" : "text-gray-600 group-hover:text-cyan-500"
+              }`} />
+              <p className="text-sm font-semibold">Telegram</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>@alcyonlabs</p>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/company/alcyon-labs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`p-6 rounded-lg border transition transform hover:scale-110 border-glow group ${
+                isDark
+                  ? "bg-white/5 border-white/10 hover:border-blue-700/50 hover:bg-blue-700/10"
+                  : "bg-black/5 border-black/10 hover:border-blue-600/50 hover:bg-blue-600/10"
+              }`}
+            >
+              <FaLinkedin size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-700"
+              }`} />
+              <p className="text-sm font-semibold">LinkedIn</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alycon Labs</p>
+            </a>
+          </div>
+
+          <p className={`text-xs sm:text-sm font-light mt-8 ${
+            isDark ? "text-gray-500" : "text-gray-500"
+          }`}>
+            🚀 Follow us and be part of the Alycon Labs community
+          </p>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer
         className={`border-t ${
           isDark ? "border-white/10 bg-black" : "border-black/10 bg-white"
         }`}
       >
-        {/* <div className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-12 grid sm:grid-cols-2 md:grid-cols-4 gap-8`}>
-          <div>
-            <div className={`text-lg font-light mb-4`}>
-              Alycon<span className="font-bold">Labs</span>
+        <div className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-8`}>
+          <div className="flex items-center justify-between flex-wrap gap-6">
+            <div
+              className={`text-xs sm:text-sm font-light ${
+                isDark
+                  ? "text-gray-400"
+                  : "text-gray-600"
+              }`}
+            >
+              © 2026 Alycon Labs. All rights reserved.
             </div>
-            <p className={`text-sm font-light ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>Full-stack development studio</p>
+
           </div>
-          {[
-            { title: 'Services', links: ['Frontend', 'Backend', 'DevOps'] },
-            { title: 'Company', links: ['About', 'Blog', 'Careers'] },
-            { title: 'Support', links: ['Docs', 'Help', 'Contact'] },
-          ].map((col) => (
-            <div key={col.title}>
-              <h4 className={`font-semibold mb-4 text-sm`}>{col.title}</h4>
-              <ul className="space-y-2">
-                {col.links.map((link) => (
-                  <li key={link} className={`text-sm font-light cursor-pointer ${isDark ? 'text-gray-400 hover:text-white' : 'text-gray-600 hover:text-black'}`}>
-                    {link}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div> */}
-        <div
-          className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-6 border-t text-center text-xs sm:text-sm font-light ${
-            isDark
-              ? "border-white/10 text-gray-400"
-              : "border-black/10 text-gray-600"
-          }`}
-        >
-          © 2026 Alycon Labs. All rights reserved.
         </div>
       </footer>
     </div>
