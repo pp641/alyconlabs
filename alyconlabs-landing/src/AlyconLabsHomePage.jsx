@@ -5,7 +5,7 @@ import vista_logo from "./assets/Vista_Logos/logo-svg-white.svg"
 import vista_logo_black from "./assets/Vista_Logos/black-svg.svg"
 
 
-export default function AlyconLabsLanding() {
+export default function AlcyonLabsLanding() {
   const [activeTab, setActiveTab] = useState('frontend');
   const [isDark, setIsDark] = useState(true);
 
@@ -71,7 +71,7 @@ export default function AlyconLabsLanding() {
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div className={`text-xl sm:text-2xl font-light tracking-tight flex items-center gap-2 slide-in-left`}>
           <img src={ !isDark ?  vista_logo : vista_logo_black} alt="Vista Logo" className="h-10 w-auto bg-white" />
-            Alycon<span className="font-bold">Labs</span>
+            Alcyon<span className="font-bold">Labs</span>
           </div>
           <div className="flex items-center gap-2 sm:gap-4">
             <button
@@ -414,7 +414,7 @@ export default function AlyconLabsLanding() {
       >
         <div className="text-center mb-12 sm:mb-16 slide-in-left">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light mb-6`}>
-            About <span className="font-bold">Alycon Labs</span>
+            About <span className="font-bold">Alcyon Labs</span>
           </h2>
         </div>
 
@@ -430,7 +430,7 @@ export default function AlyconLabsLanding() {
               isDark ? "text-gray-300" : "text-gray-700"
             }`}
           >
-            Alycon Labs partners with early-stage startups to transform ideas
+            Alcyon Labs partners with early-stage startups to transform ideas
             into validated, market-ready products. We specialise in building
             lean, focused Minimum Viable Products (MVPs) that accelerate
             time-to-market, validate core business assumptions, and minimise
@@ -514,7 +514,7 @@ export default function AlyconLabsLanding() {
       >
         <div className="text-center mb-16 slide-in-left">
           <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light`}>
-            Why <span className="font-bold">Alycon</span>Labs
+            Why <span className="font-bold">Alcyon</span>Labs
           </h2>
         </div>
 
@@ -670,14 +670,14 @@ export default function AlyconLabsLanding() {
             <ArrowRight size={20} />
           </button>
           <a
-            href="mailto:admin@alyconlabs.com"
+            href="mailto:admin@Alcyonlabs.com"
             className={`px-6 sm:px-10 py-3 sm:py-4 border rounded-full font-semibold transition transform hover:scale-105 text-sm sm:text-base inline-flex items-center justify-center ${
               isDark
                 ? "border-white/30 hover:border-white/60"
                 : "border-black/30 hover:border-black/60"
             }`}
           >
-            Mail us at admin@alyconlabs.com
+            Mail us at admin@Alcyonlabs.com
           </a>
         </div>
       </section>
@@ -750,7 +750,7 @@ export default function AlyconLabsLanding() {
                 isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-600"
               }`} />
               <p className="text-sm font-semibold">Facebook</p>
-              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alycon Labs</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alcyon Labs</p>
             </a>
 
             <a
@@ -784,14 +784,14 @@ export default function AlyconLabsLanding() {
                 isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-700"
               }`} />
               <p className="text-sm font-semibold">LinkedIn</p>
-              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alycon Labs</p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alcyon Labs</p>
             </a>
           </div>
 
           <p className={`text-xs sm:text-sm font-light mt-8 ${
             isDark ? "text-gray-500" : "text-gray-500"
           }`}>
-            🚀 Follow us and be part of the Alycon Labs community
+            🚀 Follow us and be part of the Alcyon Labs community
           </p>
         </div>
       </section>
@@ -811,7 +811,7 @@ export default function AlyconLabsLanding() {
                   : "text-gray-600"
               }`}
             >
-              © 2026 Alycon Labs. All rights reserved.
+              © 2026 Alcyon Labs. All rights reserved.
             </div>
 
           </div>
