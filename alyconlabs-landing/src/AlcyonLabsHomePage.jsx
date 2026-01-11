@@ -13,6 +13,7 @@ import {
   Sun,
   Moon,
   CheckCircle2,
+  Brain,
 } from "lucide-react";
 import {
   FaArrowRight,
@@ -282,7 +283,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
         </div>
 
         <div className="flex justify-center gap-2 sm:gap-4 mb-12 flex-wrap">
-          {["frontend", "backend", "devops", "database"].map((tab, idx) => (
+          {["frontend", "backend", "devops", "database", "aiml"].map((tab, idx) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -301,6 +302,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
               {tab === "backend" && "Backend"}
               {tab === "devops" && "DevOps"}
               {tab === "database" && "Database"}
+              {tab === "aiml" && "AI Based Products"}
             </button>
           ))}
         </div>
@@ -456,6 +458,43 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                 </ul>
               </div>
             )}
+
+            {activeTab === "aiml" && (
+              <div className="space-y-6 slide-in-left">
+                <h3 className={`text-2xl sm:text-3xl font-light`}>
+                  AI & Machine Learning
+                </h3>
+                <p
+                  className={`text-base leading-relaxed ${
+                    isDark ? "text-gray-400" : "text-gray-600"
+                  }`}
+                >
+                  Intelligent systems powered by cutting-edge AI and ML technologies. 
+                  From NLP to computer vision, we build AI solutions that drive real business value.
+                </p>
+                <ul className="space-y-3">
+                  {[
+                    "Large Language Models (LLMs)",
+                    "Natural Language Processing",
+                    "Computer Vision & Image Recognition",
+                    "Recommendation Systems",
+                    "Predictive Analytics",
+                    "AI Model Training & Fine-tuning",
+                  ].map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
+                    >
+                      <CheckCircle2
+                        size={20}
+                        className="flex-shrink-0 animate-pulse"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
 
           <div
@@ -485,6 +524,9 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                 {activeTab === "database" && (
                   <Database size={40} className="animate-bounce" />
                 )}
+                {activeTab === "aiml" && (
+                  <Brain size={40} className="animate-bounce" />
+                )}
               </div>
               <p
                 className={`font-light text-sm animate-pulse ${
@@ -495,6 +537,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                 {activeTab === "backend" && "Reliable APIs"}
                 {activeTab === "devops" && "Smooth Deployment"}
                 {activeTab === "database" && "Data Security"}
+                {activeTab === "aiml" && "Intelligent Systems"}
               </p>
             </div>
           </div>
@@ -697,7 +740,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
               isDark ? "text-gray-400" : "text-gray-600"
             }`}
           >
-            Real products we’ve helped founders design, build, and launch
+            Real products we've helped founders design, build, and launch
           </p>
         </div>
 
