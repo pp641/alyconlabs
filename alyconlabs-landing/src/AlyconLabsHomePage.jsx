@@ -1,99 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { ArrowRight, Code2, Shield, Cpu, Database, Cloud, Layout, Server, Sun, Moon, CheckCircle2 } from 'lucide-react';
+import { FaArrowRight, FaCode,  FaDatabase, FaCloud, FaServer, FaSun, FaMoon, FaCheckCircle, FaTwitter, FaInstagram, FaFacebook, FaTelegram, FaLinkedin } from 'react-icons/fa';
+import vista_logo from "./assets/Vista_Logos/logo-svg-white.svg"
+import vista_logo_black from "./assets/Vista_Logos/black-svg.svg"
 
-import {
-  ArrowRight,
-  Code2,
-  Shield,
-  Cpu,
-  Database,
-  Cloud,
-  Layout,
-  Server,
-  Sun,
-  Moon,
-  CheckCircle2,
-} from "lucide-react";
-import {
-  FaArrowRight,
-  FaCode,
-  FaDatabase,
-  FaCloud,
-  FaServer,
-  FaSun,
-  FaMoon,
-  FaCheckCircle,
-  FaTwitter,
-  FaInstagram,
-  FaFacebook,
-  FaTelegram,
-  FaLinkedin,
-} from "react-icons/fa";
-import Navbar from "./components/Navbar";
 
-export default function AlcyonLabsLanding({ isDark, setIsDark }) {
-  const [activeTab, setActiveTab] = useState("frontend");
-
-  const projects = [
-    {
-      title: "India Hidden Gems",
-      tag: "Travel / Discovery Platform",
-      description:
-        "Built a content-driven platform highlighting unexplored destinations across India with SEO-first architecture.",
-      slug: "india-hidden-gems",
-      previewImage:
-        "https://api.screenshotone.com/take?url=https://www.indiahiddengems.com&viewport=1280x800&format=jpg",
-    },
-    {
-      title: "EarlySEO",
-      tag: "SEO / SaaS Tool",
-      description:
-        "Developed an SEO growth platform helping startups track, analyze, and improve search visibility.",
-      slug: "earlyseo",
-      previewImage:
-        "https://api.screenshotone.com/take?url=https://www.earlyseo.com&viewport=1280x800&format=jpg",
-    },
-    {
-      title: "BacklinkBot",
-      tag: "AI / Marketing Automation",
-      description:
-        "Built an AI-powered backlink automation product for scalable off-page SEO.",
-      slug: "backlinkbot",
-      previewImage:
-        "https://api.screenshotone.com/take?url=https://backlinkbot.ai&viewport=1280x800&format=jpg",
-    },
-    {
-      title: "XAutoDM",
-      tag: "Growth Automation",
-      description:
-        "Created a cold DM automation platform for X (Twitter) with high-volume personalization.",
-      slug: "xautodm",
-      previewImage:
-        "https://api.screenshotone.com/take?url=https://xautodm.com&viewport=1280x800&format=jpg",
-    },
-    {
-      title: "Emulate Inf",
-      tag: "AI / SaaS Infrastructure",
-      description:
-        "Designed and deployed scalable AI infrastructure focused on performance and reliability.",
-      slug: "emulate-inf",
-      previewImage:
-        "https://api.screenshotone.com/take?url=https://emulateinf.com&viewport=1280x800&format=jpg",
-    },
-    {
-      title: "Shoto AI",
-      tag: "AI / Content Creation",
-      description:
-        "Built an AI content generation platform optimized for speed and creator workflows.",
-      slug: "shoto-ai",
-      previewImage:
-        "https://api.screenshotone.com/take?url=https://shotoai.com&viewport=1280x800&format=jpg",
-    },
-  ];
+export default function AlcyonLabsLanding() {
+  const [activeTab, setActiveTab] = useState('frontend');
+  const [isDark, setIsDark] = useState(true);
 
   return (
-    <>
-      <Navbar isDark={isDark} setIsDark={setIsDark} />
+    <div
+      className={`${
+        isDark ? "bg-black text-white" : "bg-white text-black"
+      } transition-colors duration-300 min-h-screen w-full`}
+    >
       <style>{`
         @keyframes shimmer {
           0% { background-position: -1000px 0; }
@@ -142,23 +63,38 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
       `}</style>
 
       {/* Navigation */}
+      <nav
+        className={`fixed w-full top-0 z-50 ${
+          isDark ? "bg-black/95 border-white/10" : "bg-white/95 border-black/10"
+        } backdrop-blur-sm border-b transition-colors duration-300`}
+      >
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          <div className={`text-xl sm:text-2xl font-light tracking-tight flex items-center gap-2 slide-in-left`}>
+          <img src={ !isDark ?  vista_logo : vista_logo_black} alt="Vista Logo" className="h-10 w-auto bg-white" />
+            Alcyon<span className="font-bold">Labs</span>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-4">
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className={`p-2 rounded-full transition transform hover:scale-110 ${
+                isDark
+                  ? "bg-white/10 hover:bg-white/20"
+                  : "bg-black/10 hover:bg-black/20"
+              }`}
+            >
+              {isDark ? <FaSun size={20} className="animate-spin" style={{animationDuration: '3s'}} /> : <FaMoon size={20} />}
+            </button>
+          </div>
+        </div>
+      </nav>
 
       {/* Hero Section */}
       <section
         className={`w-full min-h-screen flex items-center justify-center pt-24 px-4 sm:px-6 relative overflow-hidden`}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <div
-            className={`absolute top-20 left-10 w-40 h-40 ${
-              isDark ? "bg-blue-500" : "bg-blue-400"
-            } rounded-full float opacity-20 blur-3xl`}
-          ></div>
-          <div
-            className={`absolute bottom-20 right-10 w-60 h-60 ${
-              isDark ? "bg-purple-500" : "bg-purple-400"
-            } rounded-full float opacity-20 blur-3xl`}
-            style={{ animationDelay: "1s" }}
-          ></div>
+          <div className={`absolute top-20 left-10 w-40 h-40 ${isDark ? 'bg-blue-500' : 'bg-blue-400'} rounded-full float opacity-20 blur-3xl`}></div>
+          <div className={`absolute bottom-20 right-10 w-60 h-60 ${isDark ? 'bg-purple-500' : 'bg-purple-400'} rounded-full float opacity-20 blur-3xl`} style={{animationDelay: '1s'}}></div>
         </div>
 
         <div className="w-full max-w-5xl mx-auto text-center relative z-10">
@@ -220,7 +156,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                     className={`flex items-center gap-2 px-3 py-1 rounded-full transform transition hover:scale-110 ${
                       isDark ? "bg-white/10" : "bg-black/10"
                     }`}
-                    style={{ animationDelay: `${idx * 0.1}s` }}
+                    style={{animationDelay: `${idx * 0.1}s`}}
                   >
                     <CheckCircle2 size={16} className="animate-pulse" />
                     <span>{item}</span>
@@ -242,12 +178,6 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center slide-in-right">
             <button
-              onClick={() => {
-                const connectSection = document.getElementById("connect");
-                if (connectSection) {
-                  connectSection.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
               className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 text-sm sm:text-base transition transform hover:scale-105 ${
                 isDark
                   ? "bg-white text-black hover:bg-gray-200"
@@ -255,10 +185,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
               }`}
             >
               Build With Us
-              <ArrowRight
-                size={18}
-                className="group-hover:translate-x-1 transition"
-              />
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
             </button>
           </div>
         </div>
@@ -295,7 +222,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                   ? "border border-white/20 text-gray-400 hover:border-white/40"
                   : "border border-black/20 text-gray-600 hover:border-black/40"
               }`}
-              style={{ animationDelay: `${idx * 0.1}s` }}
+              style={{animationDelay: `${idx * 0.1}s`}}
             >
               {tab === "frontend" && "Frontend"}
               {tab === "backend" && "Backend"}
@@ -333,12 +260,9 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                     <li
                       key={item}
                       className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
-                      style={{ animationDelay: `${idx * 0.05}s` }}
+                      style={{animationDelay: `${idx * 0.05}s`}}
                     >
-                      <CheckCircle2
-                        size={20}
-                        className="flex-shrink-0 animate-pulse"
-                      />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -367,15 +291,12 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                     "Real-time Communication",
                     "Authentication",
                     "Integrations",
-                  ].map((item) => (
+                  ].map((item, idx) => (
                     <li
                       key={item}
                       className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
                     >
-                      <CheckCircle2
-                        size={20}
-                        className="flex-shrink-0 animate-pulse"
-                      />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -409,10 +330,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                       key={item}
                       className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
                     >
-                      <CheckCircle2
-                        size={20}
-                        className="flex-shrink-0 animate-pulse"
-                      />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -446,10 +364,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                       key={item}
                       className="flex items-center gap-3 text-sm sm:text-base transform transition hover:translate-x-2"
                     >
-                      <CheckCircle2
-                        size={20}
-                        className="flex-shrink-0 animate-pulse"
-                      />
+                      <CheckCircle2 size={20} className="flex-shrink-0 animate-pulse" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -473,18 +388,10 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                     : "bg-black/5 border border-black/10"
                 }`}
               >
-                {activeTab === "frontend" && (
-                  <Layout size={40} className="animate-bounce" />
-                )}
-                {activeTab === "backend" && (
-                  <Server size={40} className="animate-bounce" />
-                )}
-                {activeTab === "devops" && (
-                  <Cloud size={40} className="animate-bounce" />
-                )}
-                {activeTab === "database" && (
-                  <Database size={40} className="animate-bounce" />
-                )}
+                {activeTab === "frontend" && <Layout size={40} className="animate-bounce" />}
+                {activeTab === "backend" && <Server size={40} className="animate-bounce" />}
+                {activeTab === "devops" && <Cloud size={40} className="animate-bounce" />}
+                {activeTab === "database" && <Database size={40} className="animate-bounce" />}
               </div>
               <p
                 className={`font-light text-sm animate-pulse ${
@@ -503,7 +410,6 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
 
       {/* About Section */}
       <section
-        id="about"
         className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
       >
         <div className="text-center mb-12 sm:mb-16 slide-in-left">
@@ -546,14 +452,8 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                 "Market validation through user feedback loops",
                 "Launch strategy and post-launch iteration support",
               ].map((item, idx) => (
-                <li
-                  key={idx}
-                  className="flex items-start gap-3 transform transition hover:translate-x-2"
-                >
-                  <CheckCircle2
-                    size={20}
-                    className="flex-shrink-0 mt-1 animate-pulse"
-                  />
+                <li key={idx} className="flex items-start gap-3 transform transition hover:translate-x-2">
+                  <CheckCircle2 size={20} className="flex-shrink-0 mt-1 animate-pulse" />
                   <span
                     className={`text-base ${
                       isDark ? "text-gray-300" : "text-gray-700"
@@ -604,18 +504,8 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
             }`}
           >
             <span className="font-semibold animate-pulse">Start small.</span>{" "}
-            <span
-              className="font-semibold animate-pulse"
-              style={{ animationDelay: "0.3s" }}
-            >
-              Learn fast.
-            </span>{" "}
-            <span
-              className="font-semibold animate-pulse"
-              style={{ animationDelay: "0.6s" }}
-            >
-              Scale smart.
-            </span>
+            <span className="font-semibold animate-pulse" style={{animationDelay: '0.3s'}}>Learn fast.</span>{" "}
+            <span className="font-semibold animate-pulse" style={{animationDelay: '0.6s'}}>Scale smart.</span>
           </p>
         </div>
       </section>
@@ -683,88 +573,6 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section
-        id="projects"
-        className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
-      >
-        <div className="text-center mb-16 slide-in-left">
-          <h2 className={`text-4xl sm:text-5xl md:text-6xl font-light`}>
-            Selected <span className="font-bold">Projects</span>
-          </h2>
-          <p
-            className={`text-base sm:text-lg font-light max-w-2xl mx-auto mt-4 ${
-              isDark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
-            Real products we’ve helped founders design, build, and launch
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {projects.map((project, idx) => (
-            <div
-              key={idx}
-              className={`relative overflow-hidden p-6 rounded-lg border transition transform hover:scale-105 border-glow group ${
-                isDark
-                  ? "bg-white/5 border-white/10 hover:border-white/20"
-                  : "bg-black/5 border-black/10 hover:border-black/20"
-              }`}
-            >
-              {/* Background snapshot */}
-              <div
-                className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                style={{
-                  backgroundImage: `url(${project.previewImage})`,
-                }}
-              />
-
-              {/* Overlay */}
-              <div
-                className={`absolute inset-0 ${
-                  isDark ? "bg-black/70" : "bg-white/70"
-                }`}
-              />
-
-              {/* Content */}
-              <div className="relative z-10">
-                <span
-                  className={`text-xs uppercase tracking-wide ${
-                    isDark ? "text-gray-400" : "text-gray-500"
-                  }`}
-                >
-                  {project.tag}
-                </span>
-
-                <h3 className="text-xl font-semibold mt-2 mb-3">
-                  {project.title}
-                </h3>
-
-                <p
-                  className={`text-sm font-light mb-6 ${
-                    isDark ? "text-gray-400" : "text-gray-600"
-                  }`}
-                >
-                  {project.description}
-                </p>
-
-                <Link
-                  to={`/projects/${project.slug}`}
-                  className={`inline-flex items-center gap-2 text-sm font-semibold transition ${
-                    isDark
-                      ? "text-white hover:text-gray-300"
-                      : "text-black hover:text-gray-700"
-                  }`}
-                >
-                  View Case Study
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Process Section */}
       <section
         className={`w-full max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24`}
@@ -807,10 +615,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
               description: "Monitoring, optimization, and ongoing partnership.",
             },
           ].map((item) => (
-            <div
-              key={item.step}
-              className="flex gap-6 items-start transform transition hover:translate-x-2"
-            >
+            <div key={item.step} className="flex gap-6 items-start transform transition hover:translate-x-2">
               <div
                 className={`text-4xl font-light min-w-fit animate-pulse ${
                   isDark ? "text-white/30" : "text-black/30"
@@ -846,36 +651,53 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
           Ready to Build?
         </h2>
         <p
-          className={`text-base sm:text-lg font-light max-w-2xl mx-auto slide-in-right ${
+          className={`text-base sm:text-lg font-light mb-12 max-w-2xl mx-auto slide-in-right ${
             isDark ? "text-gray-400" : "text-gray-600"
           }`}
         >
           Let's create something amazing together
         </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center slide-in-left">
+          <button
+            className={`px-6 sm:px-10 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 transition transform hover:scale-105 ${
+              isDark
+                ? "bg-white text-black hover:bg-gray-200"
+                : "bg-black text-white hover:bg-gray-800"
+            }`}
+          >
+            Start Now
+            <ArrowRight size={20} />
+          </button>
+          <a
+            href="mailto:admin@alcyonlabs.com"
+            className={`px-6 sm:px-10 py-3 sm:py-4 border rounded-full font-semibold transition transform hover:scale-105 text-sm sm:text-base inline-flex items-center justify-center ${
+              isDark
+                ? "border-white/30 hover:border-white/60"
+                : "border-black/30 hover:border-black/60"
+            }`}
+          >
+            Mail us at admin@alcyonlabs.com
+          </a>
+        </div>
       </section>
 
       {/* Connect With Us Section */}
       <section
-        id="connect"
         className={`w-full max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center slide-in-left`}
       >
-        <div
-          className={`p-8 sm:p-12 rounded-2xl border-glow ${
-            isDark
-              ? "bg-white/5 border border-white/10"
-              : "bg-black/5 border border-black/10"
-          }`}
-        >
+        <div className={`p-8 sm:p-12 rounded-2xl border-glow ${
+          isDark
+            ? "bg-white/5 border border-white/10"
+            : "bg-black/5 border border-black/10"
+        }`}>
           <h2 className={`text-3xl sm:text-4xl md:text-5xl font-light mb-4`}>
             Connect <span className="font-bold">With Us</span>
           </h2>
-          <p
-            className={`text-base sm:text-lg font-light mb-10 max-w-2xl mx-auto ${
-              isDark ? "text-gray-400" : "text-gray-600"
-            }`}
-          >
-            Follow our journey, stay updated, and connect with our growing
-            community on social media
+          <p className={`text-base sm:text-lg font-light mb-10 max-w-2xl mx-auto ${
+            isDark ? "text-gray-400" : "text-gray-600"
+          }`}>
+            Follow our journey, stay updated, and connect with our growing community on social media
           </p>
 
           {/* Social Media Grid */}
@@ -890,22 +712,11 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                   : "bg-black/5 border-black/10 hover:border-blue-400/50 hover:bg-blue-400/10"
               }`}
             >
-              <FaTwitter
-                size={36}
-                className={`mx-auto mb-3 group-hover:animate-bounce ${
-                  isDark
-                    ? "text-gray-400 group-hover:text-blue-400"
-                    : "text-gray-600 group-hover:text-blue-500"
-                }`}
-              />
+              <FaTwitter size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-500"
+              }`} />
               <p className="text-sm font-semibold">Twitter</p>
-              <p
-                className={`text-xs mt-1 ${
-                  isDark ? "text-gray-500" : "text-gray-500"
-                }`}
-              >
-                @alcyonlabs
-              </p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>@alcyonlabs</p>
             </a>
 
             <a
@@ -918,22 +729,11 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                   : "bg-black/5 border-black/10 hover:border-pink-400/50 hover:bg-pink-400/10"
               }`}
             >
-              <FaInstagram
-                size={36}
-                className={`mx-auto mb-3 group-hover:animate-bounce ${
-                  isDark
-                    ? "text-gray-400 group-hover:text-pink-400"
-                    : "text-gray-600 group-hover:text-pink-500"
-                }`}
-              />
+              <FaInstagram size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-pink-400" : "text-gray-600 group-hover:text-pink-500"
+              }`} />
               <p className="text-sm font-semibold">Instagram</p>
-              <p
-                className={`text-xs mt-1 ${
-                  isDark ? "text-gray-500" : "text-gray-500"
-                }`}
-              >
-                @alcyonlabs
-              </p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>@alcyonlabs</p>
             </a>
 
             <a
@@ -946,22 +746,11 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                   : "bg-black/5 border-black/10 hover:border-blue-500/50 hover:bg-blue-500/10"
               }`}
             >
-              <FaFacebook
-                size={36}
-                className={`mx-auto mb-3 group-hover:animate-bounce ${
-                  isDark
-                    ? "text-gray-400 group-hover:text-blue-400"
-                    : "text-gray-600 group-hover:text-blue-600"
-                }`}
-              />
+              <FaFacebook size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-600"
+              }`} />
               <p className="text-sm font-semibold">Facebook</p>
-              <p
-                className={`text-xs mt-1 ${
-                  isDark ? "text-gray-500" : "text-gray-500"
-                }`}
-              >
-                Alcyon Labs
-              </p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alcyon Labs</p>
             </a>
 
             <a
@@ -974,22 +763,11 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                   : "bg-black/5 border-black/10 hover:border-cyan-400/50 hover:bg-cyan-400/10"
               }`}
             >
-              <FaTelegram
-                size={36}
-                className={`mx-auto mb-3 group-hover:animate-bounce ${
-                  isDark
-                    ? "text-gray-400 group-hover:text-cyan-400"
-                    : "text-gray-600 group-hover:text-cyan-500"
-                }`}
-              />
+              <FaTelegram size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-cyan-400" : "text-gray-600 group-hover:text-cyan-500"
+              }`} />
               <p className="text-sm font-semibold">Telegram</p>
-              <p
-                className={`text-xs mt-1 ${
-                  isDark ? "text-gray-500" : "text-gray-500"
-                }`}
-              >
-                @alcyonlabs
-              </p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>@alcyonlabs</p>
             </a>
 
             <a
@@ -1002,44 +780,17 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
                   : "bg-black/5 border-black/10 hover:border-blue-600/50 hover:bg-blue-600/10"
               }`}
             >
-              <FaLinkedin
-                size={36}
-                className={`mx-auto mb-3 group-hover:animate-bounce ${
-                  isDark
-                    ? "text-gray-400 group-hover:text-blue-400"
-                    : "text-gray-600 group-hover:text-blue-700"
-                }`}
-              />
+              <FaLinkedin size={36} className={`mx-auto mb-3 group-hover:animate-bounce ${
+                isDark ? "text-gray-400 group-hover:text-blue-400" : "text-gray-600 group-hover:text-blue-700"
+              }`} />
               <p className="text-sm font-semibold">LinkedIn</p>
-              <p
-                className={`text-xs mt-1 ${
-                  isDark ? "text-gray-500" : "text-gray-500"
-                }`}
-              >
-                Alcyon Labs
-              </p>
+              <p className={`text-xs mt-1 ${isDark ? 'text-gray-500' : 'text-gray-500'}`}>Alcyon Labs</p>
             </a>
           </div>
 
-          {/* Email Contact */}
-          <div className="mt-10">
-            <a
-              href="mailto:admin@alcyonlabs.com"
-              className={`inline-flex items-center gap-2 px-8 py-4 border rounded-full font-semibold transition transform hover:scale-105 ${
-                isDark
-                  ? "border-white/30 hover:border-white/60"
-                  : "border-black/30 hover:border-black/60"
-              }`}
-            >
-              Mail us at admin@alcyonlabs.com
-            </a>
-          </div>
-
-          <p
-            className={`text-xs sm:text-sm font-light mt-8 ${
-              isDark ? "text-gray-500" : "text-gray-500"
-            }`}
-          >
+          <p className={`text-xs sm:text-sm font-light mt-8 ${
+            isDark ? "text-gray-500" : "text-gray-500"
+          }`}>
             🚀 Follow us and be part of the Alcyon Labs community
           </p>
         </div>
@@ -1055,14 +806,17 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
           <div className="flex items-center justify-between flex-wrap gap-6">
             <div
               className={`text-xs sm:text-sm font-light ${
-                isDark ? "text-gray-400" : "text-gray-600"
+                isDark
+                  ? "text-gray-400"
+                  : "text-gray-600"
               }`}
             >
               © 2026 Alcyon Labs. All rights reserved.
             </div>
+
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
