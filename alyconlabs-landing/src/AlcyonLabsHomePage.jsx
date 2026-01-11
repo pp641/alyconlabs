@@ -14,6 +14,8 @@ import {
   Moon,
   CheckCircle2,
   Brain,
+  Menu,
+  X,
 } from "lucide-react";
 import {
   FaArrowRight,
@@ -34,6 +36,7 @@ import Navbar from "./components/Navbar";
 
 export default function AlcyonLabsLanding({ isDark, setIsDark }) {
   const [activeTab, setActiveTab] = useState("frontend");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const projects = [
     {
@@ -92,9 +95,144 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
     },
   ];
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
+    }
+  };
+
   return (
     <>
-      <Navbar isDark={isDark} setIsDark={setIsDark} />
+      {/* Mobile-friendly Navbar */}
+      <nav
+        className={`fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-md ${
+          isDark
+            ? "bg-black/80 border-white/10"
+            : "bg-white/80 border-black/10"
+        }`}
+      >
+        <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <Link to="/" className="text-xl sm:text-2xl font-bold">
+            Alcyon<span className="font-light">Labs</span>
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-6">
+            <button
+              onClick={() => scrollToSection("about")}
+              className={`text-sm font-medium transition ${
+                isDark
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-700 hover:text-black"
+              }`}
+            >
+              About
+            </button>
+            <button
+              onClick={() => scrollToSection("projects")}
+              className={`text-sm font-medium transition ${
+                isDark
+                  ? "text-gray-300 hover:text-white"
+                  : "text-gray-700 hover:text-black"
+              }`}
+            >
+              Projects
+            </button>
+            <button
+              onClick={() => scrollToSection("connect")}
+              className={`px-4 py-2 rounded-full border font-medium text-sm transition ${
+                isDark
+                  ? "border-white/20 hover:bg-white/10"
+                  : "border-black/20 hover:bg-black/10"
+              }`}
+            >
+              Connect
+            </button>
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className={`p-2 rounded-full transition ${
+                isDark
+                  ? "bg-white/10 hover:bg-white/20"
+                  : "bg-black/10 hover:bg-black/20"
+              }`}
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="flex md:hidden items-center gap-3">
+            <button
+              onClick={() => setIsDark(!isDark)}
+              className={`p-2 rounded-full transition ${
+                isDark
+                  ? "bg-white/10 hover:bg-white/20"
+                  : "bg-black/10 hover:bg-black/20"
+              }`}
+            >
+              {isDark ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className={`p-2 rounded-lg transition ${
+                isDark
+                  ? "bg-white/10 hover:bg-white/20"
+                  : "bg-black/10 hover:bg-black/20"
+              }`}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {mobileMenuOpen && (
+          <div
+            className={`md:hidden border-t ${
+              isDark
+                ? "bg-black/95 border-white/10"
+                : "bg-white/95 border-black/10"
+            }`}
+          >
+            <div className="px-4 py-4 space-y-3">
+              <button
+                onClick={() => scrollToSection("about")}
+                className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition ${
+                  isDark
+                    ? "text-gray-300 hover:bg-white/10"
+                    : "text-gray-700 hover:bg-black/10"
+                }`}
+              >
+                About
+              </button>
+              <button
+                onClick={() => scrollToSection("projects")}
+                className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition ${
+                  isDark
+                    ? "text-gray-300 hover:bg-white/10"
+                    : "text-gray-700 hover:bg-black/10"
+                }`}
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => scrollToSection("connect")}
+                className={`block w-full text-left px-4 py-3 rounded-lg font-medium transition ${
+                  isDark
+                    ? "text-gray-300 hover:bg-white/10"
+                    : "text-gray-700 hover:bg-black/10"
+                }`}
+              >
+                Connect
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+
       <style>{`
         @keyframes shimmer {
           0% { background-position: -1000px 0; }
@@ -141,8 +279,6 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
           animation: border-glow 2s ease-in-out infinite;
         }
       `}</style>
-
-      {/* Navigation */}
 
       {/* Hero Section */}
       <section
@@ -243,12 +379,7 @@ export default function AlcyonLabsLanding({ isDark, setIsDark }) {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center slide-in-right">
             <button
-              onClick={() => {
-                const connectSection = document.getElementById("connect");
-                if (connectSection) {
-                  connectSection.scrollIntoView({ behavior: "smooth" });
-                }
-              }}
+              onClick={() => scrollToSection("connect")}
               className={`px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 text-sm sm:text-base transition transform hover:scale-105 ${
                 isDark
                   ? "bg-white text-black hover:bg-gray-200"
